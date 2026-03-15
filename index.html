@@ -6,11 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>ระบบจดหวย Pro - Mobile App</title>
-    
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2953/2953361.png">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2953/2953361.png">
-    
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogInN5c3RlbS1sb3R0ZXJ5LXBvbyIsCiAgInNob3J0X25hbWUiOiAi4LiI4LiU4Lir4Lin4LiiIFBybyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjBmNGY4IiwKICAidGhlbWVfY29sb3IiOiAiIzRhOTBlMiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI5NTMvMjk1MzM2MS5wbmciLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0KICBdCn0=">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogInN5c3RlbS1sb3R0ZXJ5LXBvbyIsCiAgInNob3J0X25hbWUiOiAi4LiI4LiU4Lir4Lin4LiiIFBybyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjBmNGY4IiwKICAidGhlbWVfY29sb3IiOiAiIzRhOTBlMiIKfQ==">
     
     <style>
         :root { --primary: #4a90e2; --success: #2ecc71; --danger: #e74c3c; --text: #2c3e50; }
@@ -143,6 +139,7 @@
 </div>
 
 <script>
+    // แก้ไขจุดตายที่ 2: เพิ่ม Service Worker (Inline) เพื่อให้ Chrome ยอมรับการ Install App
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGU9Pnt9KTs=');
     }
