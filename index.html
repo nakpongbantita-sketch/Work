@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ระบบจดหวย Pro</title>
+    <title>ระบบจดหวย Pro - Mobile App</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
-
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogInN5c3RlbS1sb3R0ZXJ5LXBvbyIsCiAgInNob3J0X25hbWUiOiAi4LiI4LiU4Lir4Lin4LiiIFBybyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjBmNGY4IiwKICAidGhlbWVfY29sb3IiOiAiIzRhOTBlMiIKfQ==">
+    
     <style>
         :root { --primary: #4a90e2; --success: #2ecc71; --danger: #e74c3c; --text: #2c3e50; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f0f4f8; margin: 0; padding: env(safe-area-inset-top) 10px 80px 10px; color: var(--text); -webkit-tap-highlight-color: transparent; }
@@ -57,7 +56,7 @@
 
 <div class="container">
     <div class="card">
-        <h2 onclick="document.getElementById('priceSettings').style.display = document.getElementById('priceSettings').style.display === 'none' ? 'block' : 'none'" style="cursor:pointer;">⚙️ ตั้งค่าราคาจ่าย</h2>
+        <h2 onclick="document.getElementById('priceSettings').style.display = document.getElementById('priceSettings').style.display === 'none' ? 'block' : 'none'" style="cursor:pointer;">⚙️ ตั้งค่าราคาจ่าย (แตะเพื่อเปิด/ปิด)</h2>
         <div id="priceSettings" style="display:none;">
             <div class="grid-2">
                 <div><label>2 ตัว (บาทละ)</label><input type="number" id="r2" value="65"></div>
@@ -71,7 +70,7 @@
                 <div><label>วิ่งบน (บาทละ)</label><input type="number" id="r_run_up" value="3"></div>
                 <div><label>วิ่งล่าง (บาทละ)</label><input type="number" id="r_run_down" value="4"></div>
             </div>
-            <button onclick="saveRates()" style="background:var(--primary); color:white; margin-top:10px;">บันทึกราคา</button>
+            <button onclick="saveRates()" style="background:var(--primary); color:white; margin-top:10px; padding:10px;">บันทึกราคา</button>
         </div>
     </div>
 
@@ -89,8 +88,8 @@
         </div>
         <div class="grid-4">
             <div><label>เลข</label><input type="text" id="betNum" inputmode="numeric" maxlength="3"></div>
-            <div id="boxDirect"><label id="lblDirect">ตรง/บน</label><input type="number" id="betAmtDirect" inputmode="numeric"></div>
-            <div id="boxToad"><label id="lblToad">โต๊ด/ล่าง</label><input type="number" id="betAmtToad" inputmode="numeric"></div>
+            <div id="boxDirect"><label id="lblDirect">ตรง</label><input type="number" id="betAmtDirect" inputmode="numeric"></div>
+            <div id="boxToad"><label id="lblToad">โต๊ด</label><input type="number" id="betAmtToad" inputmode="numeric"></div>
             <div id="boxLow"><label id="lblLow">ล่าง</label><input type="number" id="betAmtLow" inputmode="numeric"></div>
         </div>
         <button class="btn-add" onclick="addBet()">➕ เพิ่มเลขลงบิล</button>
@@ -128,9 +127,10 @@
                 <div><label>2 ตัวล่าง</label><input type="text" id="win2down" maxlength="2" class="win-val" oninput="saveWinResult()"></div>
             </div>
             <div class="grid-1"><label>3 ตัวบน</label><input type="text" id="win3up" maxlength="3" class="win-val" oninput="saveWinResult()"></div>
+            <label>3 ตัวล่าง (4 รางวัล)</label>
             <div class="grid-4">
-                <input type="text" id="win3d1" maxlength="3" class="win-val" placeholder="ล่าง1" oninput="saveWinResult()"><input type="text" id="win3d2" maxlength="3" class="win-val" placeholder="ล่าง2" oninput="saveWinResult()">
-                <input type="text" id="win3d3" maxlength="3" class="win-val" placeholder="ล่าง3" oninput="saveWinResult()"><input type="text" id="win3d4" maxlength="3" class="win-val" placeholder="ล่าง4" oninput="saveWinResult()">
+                <input type="text" id="win3d1" maxlength="3" class="win-val" oninput="saveWinResult()"><input type="text" id="win3d2" maxlength="3" class="win-val" oninput="saveWinResult()">
+                <input type="text" id="win3d3" maxlength="3" class="win-val" oninput="saveWinResult()"><input type="text" id="win3d4" maxlength="3" class="win-val" oninput="saveWinResult()">
             </div>
         </div>
         <button class="btn-check" onclick="checkAllBills()">🔍 ตรวจรางวัลทุกบิล</button>
@@ -140,6 +140,11 @@
 </div>
 
 <script>
+    // แก้ไขจุดตายที่ 2: เพิ่ม Service Worker (Inline) เพื่อให้ Chrome ยอมรับการ Install App
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGU9Pnt9KTs=');
+    }
+
     let currentBets = [];
     let billHistory = JSON.parse(localStorage.getItem('lot_history_v12')) || [];
     let rates = JSON.parse(localStorage.getItem('lot_rates')) || { r2: 65, r3d: 500, r3t: 100, r3low: 125, runUp: 3, runDown: 4 };
@@ -156,7 +161,7 @@
             runDown: parseFloat(document.getElementById('r_run_down').value)
         };
         localStorage.setItem('lot_rates', JSON.stringify(rates));
-        alert("บันทึกราคาแล้ว");
+        alert("บันทึกราคาจ่ายแล้ว");
         renderCurrentList();
     }
 
@@ -239,17 +244,19 @@
         currentBets.forEach(b => {
             if (!groups[b.type]) groups[b.type] = [];
             groups[b.type].push(b); total += b.amt;
+            
             let prize = 0;
             if (b.type === "3ตัวบน") {
-                if (b.subType === 'ตรง' && b.num === w3u && w3u !== "") prize = b.amt * rates.r3d;
+                if (b.subType === 'ตรง' && b.num === w3u) prize = b.amt * rates.r3d;
                 else if (b.subType === 'โต๊ด' && isToad(b.num, w3u)) prize = b.amt * rates.r3t;
             }
-            if (b.type === "3ตัวล่าง" && w3d.includes(b.num) && b.num !== "") prize = b.amt * rates.r3low;
-            if (b.type === "2ตัวบน" && b.num === w2u && w2u !== "") prize = b.amt * rates.r2;
-            if (b.type === "2ตัวล่าง" && b.num === w2d && w2d !== "") prize = b.amt * rates.r2;
-            if (b.type === "วิ่งบน" && w2u.includes(b.num) && b.num !== "") prize = b.amt * rates.runUp;
-            if (b.type === "วิ่งล่าง" && w2d.includes(b.num) && b.num !== "") prize = b.amt * rates.runDown;
-            b.currentPrize = prize;
+            if (b.type === "3ตัวล่าง" && w3d.includes(b.num)) prize = b.amt * rates.r3low;
+            if (b.type === "2ตัวบน" && b.num === w2u) prize = b.amt * rates.r2;
+            if (b.type === "2ตัวล่าง" && b.num === w2d) prize = b.amt * rates.r2;
+            if (b.type === "วิ่งบน" && w2u.includes(b.num)) prize = b.amt * rates.runUp;
+            if (b.type === "วิ่งล่าง" && w2d.includes(b.num)) prize = b.amt * rates.runDown;
+            
+            b.currentPrize = prize; 
             totalWinInBill += prize;
         });
 
@@ -274,17 +281,17 @@
     }
 
     function isToad(bet, win) {
-        if (!win || win === "" || bet.length !== 3 || bet === win) return false;
+        if (!win || bet.length !== 3 || bet === win) return false;
         return bet.split('').sort().join('') === win.split('').sort().join('');
     }
 
     function archiveBill() {
         const name = document.getElementById('custName').value;
-        if(currentBets.length === 0 || !name) { alert("ใส่ชื่อและเลขก่อนครับ"); return; }
+        if(currentBets.length === 0 || !name) { alert("กรุณาใส่ชื่อลูกค้าและเลข"); return; }
         if (editingBillId) billHistory = billHistory.filter(b => b.id !== editingBillId);
         billHistory.push({ id: editingBillId || Date.now(), customer: name, items: [...currentBets], total: currentBets.reduce((a, b) => a + b.amt, 0) });
         localStorage.setItem('lot_history_v12', JSON.stringify(billHistory));
-        alert("บันทึกแล้ว"); resetInputState();
+        alert("บันทึกลงเครื่องแล้ว"); resetInputState();
     }
 
     function checkAllBills() {
@@ -304,12 +311,13 @@
                 if (item.type === "2ตัวล่าง" && item.num === document.getElementById('win2down').value) p = item.amt * rates.r2;
                 if (item.type === "วิ่งบน" && document.getElementById('win2up').value.includes(item.num)) p = item.amt * rates.runUp;
                 if (item.type === "วิ่งล่าง" && document.getElementById('win2down').value.includes(item.num)) p = item.amt * rates.runDown;
-                if (p > 0) { totalWin += p; detailTxt += `• ${item.num} (${item.type}) = ${p.toLocaleString()} บ.<br>`; }
+                
+                if (p > 0) { totalWin += p; detailTxt += `• ${item.num} (${item.type}/${item.subType}) = ${p.toLocaleString()} บ.<br>`; }
             });
             if (totalWin > 0) {
                 found = true;
                 resultDiv.innerHTML += `<div class="win-row" onclick="viewBillById(${bill.id})">
-                    <strong>👤 ${bill.customer}</strong> <span style="color:var(--danger);float:right;">+${totalWin.toLocaleString()} บ.</span>
+                    <strong>👤 คุณ${bill.customer}</strong> <span style="color:var(--danger);float:right;font-weight:bold;">+${totalWin.toLocaleString()} บ.</span>
                     <span class="win-detail">${detailTxt}</span>
                 </div>`;
             }
@@ -355,8 +363,11 @@
         txt += `----------------\n💰 ยอดรวม: ${document.getElementById('totalSales').innerText}`;
         window.location.href = "line://msg/text/" + encodeURIComponent(txt);
     }
-    function clearSystem() { if(confirm("ล้างทั้งหมด?")) { localStorage.clear(); billHistory = []; resetInputState(); location.reload(); } }
+    function clearSystem() { if(confirm("ล้างข้อมูลทั้งหมด?")) { localStorage.clear(); billHistory = []; resetInputState(); location.reload(); } }
 
+    document.getElementById('r2').value = rates.r2; document.getElementById('r3_d').value = rates.r3d;
+    document.getElementById('r3_t').value = rates.r3t; document.getElementById('r3_low').value = rates.r3low;
+    document.getElementById('r_run_up').value = rates.runUp; document.getElementById('r_run_down').value = rates.runDown;
     loadWinResult(); renderHistoryList(); updateUIByBetType();
 </script>
 </body>
