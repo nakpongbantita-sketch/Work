@@ -355,13 +355,26 @@
 
     function deleteBet(id) { currentBets = currentBets.filter(b => b.id !== id); renderCurrentList(); }
     function cancelEdit() { resetInputState(); }
+    
     function sendToLine() {
         const name = document.getElementById('custName').value || "ทั่วไป";
-        let txt = `🧾 บิล: ${name}\n----------------\n`;
-        currentBets.forEach(b => { txt += `• ${b.num} [${b.subType}] = ${b.amt} บ.\n`; });
-        txt += `----------------\n💰 ยอดรวม: ${document.getElementById('totalSales').innerText}`;
+        let total = 0;
+        let txt = `📝 บิล : ${name}\n`;
+        
+        currentBets.forEach(b => { 
+            let typeName = b.type;
+            // ปรับแต่งชื่อประเภทให้สวยงาม
+            if (b.type === '2ตัวบน') typeName = '2 ตัวบน';
+            if (b.type === '2ตัวล่าง') typeName = '2 ตัวล่าง';
+            
+            txt += `🔹 ${b.num} (${typeName}/${b.subType}) = ${b.amt.toLocaleString()} บาท\n`; 
+            total += b.amt;
+        });
+        
+        txt += `\n💰 ยอดรวม = ${total.toLocaleString()} บาท`;
         window.location.href = "line://msg/text/" + encodeURIComponent(txt);
     }
+    
     function clearSystem() { if(confirm("ล้างข้อมูลทั้งหมด?")) { localStorage.clear(); billHistory = []; resetInputState(); location.reload(); } }
 
     document.getElementById('r2').value = rates.r2; document.getElementById('r3_d').value = rates.r3d;
