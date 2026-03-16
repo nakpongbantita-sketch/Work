@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2153/2153106.png">
+    
     <title>Lotto Master - ระบบเจ้ามือ (Fixed Line Summary)</title>
     <style>
         :root { --primary: #2563eb; --danger: #ef4444; --success: #22c55e; --dark: #1e293b; --light: #f8fafc; --line: #06c755; }
@@ -140,6 +145,19 @@
     </div>
 
 <script>
+    // ส่วนที่เพิ่มอัตโนมัติเพื่อให้เบราว์เซอร์ยอมรับการเป็นแอป
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            const blob = new Blob([`
+                self.addEventListener('fetch', (e) => {
+                    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+                });
+            `], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(url);
+        });
+    }
+
     let entries = JSON.parse(localStorage.getItem('entries_final')) || [];
     let customLimits = JSON.parse(localStorage.getItem('limits_final')) || {};
     let historyData = JSON.parse(localStorage.getItem('history_final')) || [];
